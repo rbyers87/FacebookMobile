@@ -14,30 +14,32 @@
 <body>
   <div class="container">
     <h1>Welcome to My PWA</h1>
-    <p>This PWA displays the following website in fullscreen:</p>
-
-    <!-- Button to trigger fullscreen mode -->
-    <button onclick="goFullscreenAndNavigate()">Go Fullscreen</button>
+    <p>This PWA will automatically open Facebook in fullscreen:</p>
+    <!-- No button needed, it will auto-redirect and attempt fullscreen -->
   </div>
 
   <script>
-    function goFullscreenAndNavigate() {
-      // Check if the fullscreen API is available and request fullscreen
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-      } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-        document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
-        document.documentElement.webkitRequestFullscreen();
-      } else if (document.documentElement.msRequestFullscreen) { // Internet Explorer/Edge
-        document.documentElement.msRequestFullscreen();
+    // This function will run when the page is loaded
+    window.onload = function() {
+      // Check if fullscreen API is available and try to request fullscreen
+      function requestFullscreen() {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { // Internet Explorer/Edge
+          document.documentElement.msRequestFullscreen();
+        }
       }
 
-      // After fullscreen request, navigate to m.facebook.com
-      setTimeout(function() {
-        window.location.href = "https://m.facebook.com";
-      }, 100); // Small delay to allow fullscreen transition
-    }
+      // Try to trigger fullscreen on page load (may require user action in most browsers)
+      requestFullscreen();
+
+      // Redirect to m.facebook.com
+      window.location.href = "https://m.facebook.com";
+    };
   </script>
 </body>
 </html>
