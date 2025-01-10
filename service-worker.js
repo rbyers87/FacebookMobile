@@ -2,7 +2,7 @@ const CACHE_NAME = 'my-site-cache-v1';
 const urlsToCache = [
     './', // Root
     './index.html', // Main HTML
-    './styles.css', // CSS
+    './style.css', // CSS
     './script.js', // JS
     './icon-192x192.png', // Icon
 ];
