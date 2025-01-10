@@ -14,6 +14,6 @@ self.addEventListener('install', event => {
                 console.log('[Service Worker] Pre-caching resources...');
                 return cache.addAll(urlsToCache);
             })
-            .catch(err => console.error('[Service Worker] Cache add failed:', err));
+            .catch(err => console.error('[Service Worker] Cache add failed:', err)) // Added missing closing parenthesis
     );
 });
