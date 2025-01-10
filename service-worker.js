@@ -1,10 +1,10 @@
 const CACHE_NAME = 'my-site-cache-v1';
 const urlsToCache = [
-    './', // Root
-    './index.html', // Main HTML
-    './style.css', // CSS
-    './script.js', // JS
-    './icon-192x192.png', // Icon
+    '/', // Root
+    '/index.html', // Main HTML
+    '/style.css', // CSS
+    '/script.js', // JS
+    '/icon-192x192.png', // Icon
 ];
 
 self.addEventListener('install', event => {
@@ -12,8 +12,9 @@ self.addEventListener('install', event => {
         caches.open(CACHE_NAME)
             .then(cache => {
                 console.log('[Service Worker] Pre-caching resources...');
-                return cache.addAll(urlsToCache);
+                return cache.addAll(urlsToCache).catch(err => {
+                    console.error('[Service Worker] Cache add failed:', err);
+                });
             })
-            .catch(err => console.error('[Service Worker] Cache add failed:', err)) // Added missing closing parenthesis
     );
 });
