@@ -12,9 +12,11 @@ self.addEventListener('install', event => {
         caches.open(CACHE_NAME)
             .then(cache => {
                 console.log('[Service Worker] Pre-caching resources...');
-                return cache.addAll(urlsToCache).catch(err => {
-                    console.error('[Service Worker] Cache add failed:', err);
-                });
+                return cache.addAll(urlsToCache)
+                    .catch(err => {
+                        console.error('[Service Worker] Cache add failed:', err);
+                        // You can log each failed URL here for debugging.
+                    });
             })
     );
 });
