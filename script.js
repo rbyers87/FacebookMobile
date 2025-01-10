@@ -1,5 +1,5 @@
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js')
+    navigator.serviceWorker.register('/service-worker.js')  // Use the root-relative path
         .then(registration => {
             console.log('[Service Worker] Registered successfully:', registration);
         })
